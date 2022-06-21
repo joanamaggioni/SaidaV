@@ -56,4 +56,3 @@ class CreateUserService {
 }
 
 export { CreateUserService };
-

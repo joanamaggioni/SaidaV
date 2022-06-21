@@ -1,41 +1,32 @@
-async vinculateCategory(req: Request, res: Response) {
-const { id } = req.params;
-const { categories } = req.body;
+async listAll(req: Request, res: Response) {
 const { is_admin: isAdmin } = req;
-if (isAdmin) {
-const service = new LinkProductToCategory();
+const { size_id: sizeFilter, category_id: categoryFilter } = req.query;
+const service = new GetAllTransactionsServices();
 try {
-const result = await service.execute(id, categories);
+const result = await service.execute(
+Number(sizeFilter),
+categoryFilter,
+isAdmin
+);
 return res.json(result);
 } catch (err)
 { return res
 .status(err.code ?? 400)
 .json({ error: err.error ?? err.message });
 }
-} else
-return
-res
-.status(401)
-.json({ error: "Only admins can vinculate products." });
 }
-async vinculateSize(req: Request, res: Response) {
-const { id } = req.params;
-const { quantities } = req.body;
-const { is_admin: isAdmin } = req;
-if (isAdmin) {
-const service = new LinkProductToSize();
+async find(req: Request, res: Response) {
+const { id: productId } = req.params;
+const service = new GetProductFromIdServices();
 try {
-const result = await service.execute(id, quantities);
+const result = await service.execute(productId);
 return res.json(result);
 } catch (err)
 { return res
 .status(err.code ?? 400)
 .json({ error: err.error ?? err.message });
 }
-} else
-return
-res
-.status(401)
-.json({ error: "Only admins can vinculate products." });
 }
+}
+export { ProductsController };
 

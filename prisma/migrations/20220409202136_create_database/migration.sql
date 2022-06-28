@@ -1,4 +1,4 @@
--- CreateTable usuários
+-- CreateTable
 CREATE TABLE "users" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "email" TEXT NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE "users" (
     CONSTRAINT "users_order_id_fkey" FOREIGN KEY ("order_id") REFERENCES "orders" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
--- CreateTable pedidos
+-- CreateTable
 CREATE TABLE "orders" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "value" REAL NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE "orders" (
     "created_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
--- CreateTable produtos
+-- CreateTable
 CREATE TABLE "products" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "name" TEXT NOT NULL,
@@ -27,12 +27,12 @@ CREATE TABLE "products" (
     CONSTRAINT "products_order_id_fkey" FOREIGN KEY ("order_id") REFERENCES "orders" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
--- CreateTable tamanhos
+-- CreateTable
 CREATE TABLE "sizes" (
     "name" TEXT NOT NULL PRIMARY KEY
 );
 
--- CreateTable quantidades
+-- CreateTable
 CREATE TABLE "quantities" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "size_id" TEXT NOT NULL,
